@@ -28,6 +28,7 @@ class ZplActivity : AppCompatActivity() {
         bind.textBtn.setOnClickListener {
             printer.addStart()
                 .setPrinterWidth(500)
+                .setLabelLength(400)
                 .addText(10, 0, ZPLConst.FNT_A, ZPLConst.ROTATION_0, 9,5, "fontA")
                 .addText(10, 20, ZPLConst.FNT_B, ZPLConst.ROTATION_0, 11,7, "fontB")
                 .addText(10, 40, ZPLConst.FNT_C, ZPLConst.ROTATION_0, 18,10, "fontC")

@@ -41,6 +41,7 @@
     <string name="hint">Please input IP</string>
     <string name="context_and_code">print context,lineAndBarCode</string>
     <string name="image">Print Image</string>
+    <string name="image_compression">Image Compression</string>
     <string name="text">Print text</string>
     <string name="print_table">Print Table</string>
     <string name="barcode">Print barCode</string>

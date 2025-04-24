@@ -41,6 +41,13 @@
             android:text="@string/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bmpCompressionBtn"
+            style="@style/ButtonText"
+            android:layout_marginTop="20dp"
+            android:text="@string/image_compression"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/printerStatusBtn"

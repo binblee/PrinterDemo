@@ -15,7 +15,7 @@ import com.posprinter.printdemo.widget.ModifyWifiDlg
 import net.posprinter.POSConst
 import net.posprinter.POSPrinter
 import net.posprinter.model.PTable
-import net.posprinter.utils.StringUtils
+import java.nio.charset.Charset
 
 class PosActivity : AppCompatActivity() {
     private val printer = POSPrinter(App.get().curConnect)
@@ -67,8 +67,8 @@ class PosActivity : AppCompatActivity() {
             printer.openCashBox(POSConst.PIN_TWO)
         }
         bind.tableBtn.setOnClickListener {
-            val table = PTable(arrayOf("Item", "QTY", "Price", "Total"), arrayOf(13, 10, 10, 11))
-                .addRow("100328", "1", "7.99", "7.99")
+            val table = PTable(arrayOf("Item", "QTY", "Price", "Total"), arrayOf(13, 10, 10, 11), arrayOf(0, 0, 1, 1))
+                .addRow("Apple Apple xxxxxxxxxxxxx", arrayOf("100328", "1", "7.99", "7.99"), "remarks:xxxxxxxx")
                 .addRow("680015", "4", "0.99", "3.96")
                 .addRow("102501102501102501", "1", "43.99", "43.99")
                 .addRow("021048", "1", "4.99", "4.99")
@@ -88,7 +88,7 @@ class PosActivity : AppCompatActivity() {
         }
         bind.querySerialNumberBtn.setOnClickListener {
             printer.getSerialNumber {
-                UIUtils.toast("SN:${StringUtils.bytes2String(it, "gbk")}")
+                UIUtils.toast("SN:${String(it, Charset.defaultCharset())}")
             }
         }
         bind.setIpViaUdpBtn.setOnClickListener {

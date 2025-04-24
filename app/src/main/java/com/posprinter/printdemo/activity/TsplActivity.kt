@@ -10,6 +10,7 @@ import com.posprinter.printdemo.databinding.ActivityTsplBinding
 import com.posprinter.printdemo.utils.UIUtils
 import net.posprinter.TSPLConst
 import net.posprinter.TSPLPrinter
+import net.posprinter.model.AlgorithmType
 
 class TsplActivity : AppCompatActivity() {
     private val printer = TSPLPrinter(App.get().curConnect)
@@ -34,6 +35,16 @@ class TsplActivity : AppCompatActivity() {
         }
         bind.tsplpic.setOnClickListener {
             printPic()
+        }
+        bind.bmpCompressionBtn.setOnClickListener {
+            val mOptions = BitmapFactory.Options()
+            mOptions.inScaled = false
+            val bmp = BitmapFactory.decodeResource(resources, R.drawable.test, mOptions)
+            printer.sizeMm(76.0, 300.0)
+                .gapMm(2.0, 0.0)
+                .cls()
+                .bitmapCompression(0, 0, TSPLConst.BMP_MODE_OVERWRITE_C, 600, bmp, AlgorithmType.Threshold)
+                .print(1)
         }
         bind.printerStatusBtn.setOnClickListener {
             printer.printerStatus(1000) {
@@ -60,7 +71,9 @@ class TsplActivity : AppCompatActivity() {
     }
 
     private fun printPic() {
-        val bmp = BitmapFactory.decodeResource(resources, R.drawable.nv_test)
+        val mOptions = BitmapFactory.Options()
+        mOptions.inScaled = false
+        val bmp = BitmapFactory.decodeResource(resources, R.drawable.test, mOptions)
         printPicCode(bmp)
     }
 
@@ -106,10 +119,9 @@ class TsplActivity : AppCompatActivity() {
     }
 
     private fun printPicCode(b: Bitmap) {
-        printer.sizeMm(60.0, 60.0)
-            .gapMm(2.0, 0.0)
+        printer.sizeMm(76.0, 300.0)
             .cls()
-            .bitmap(0, 0, TSPLConst.BMP_MODE_OVERWRITE, 400, b)
+            .bitmap(0, 0, TSPLConst.BMP_MODE_OVERWRITE, 600, b, AlgorithmType.Threshold)
             .print(1)
     }
 

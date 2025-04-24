@@ -55,6 +55,7 @@ class SelectBluetoothActivity : AppCompatActivity() {
             val action = intent.action
             if (BluetoothDevice.ACTION_FOUND == action) {
                 val btd = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+ 	            if (btd?.type == 2) return
                 if (btd!!.bondState != BluetoothDevice.BOND_BONDED && !deviceIsExist(btd.address)) {
                     var name = btd.name
                     if (name == null) name = "none"
